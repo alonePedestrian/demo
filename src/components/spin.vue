@@ -54,11 +54,11 @@
             now = _target.getAttribute('now'),
             spin_id = _target.getAttribute('spin_id');
           // 左滑
-          if (this.mouseX - this.x > 50) {
+          if (this.mouseX - this.x > 50 && this.x) {
             now == spin_id - len + 1 ? now = spin_id : now--;
           }
           // 右滑
-          else if (this.mouseX - this.x < -50) {
+          else if (this.mouseX - this.x < -50 && this.x) {
             now == k ? now = spin_id - len + 1 : now++;
           }
           _target.setAttribute('style', `transform: translateX(${now * 100}vw)`);
