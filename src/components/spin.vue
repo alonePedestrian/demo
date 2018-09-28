@@ -12,6 +12,8 @@
       return {
         timer: '',
         spin_item: [],
+        mouseX: 0,
+        x: 0,
       }
     },
     created() {
@@ -25,9 +27,10 @@
             target = document.getElementsByClassName('spin_item'),
             len = target.length;
           for (let k = 0; k < len; k++) {
-            this.spin_item.push(`transform: translate(${k * 100}vw, 0)`);
+            this.spin_item.push(`transform: translateX(${k * 100}vw)`);
             target[k].setAttribute('style', this.spin_item[k]);
             target[k].setAttribute('spin_id', k);
+            target[k].setAttribute('now', k);
           }
           target_parent.addEventListener('touchstart', this.moveStart);
           target_parent.addEventListener('touchmove', this.move);
@@ -35,19 +38,32 @@
         })
       },
       moveStart(e) {
-        console.group('%c moveStrat-------------------------', 'color:red');
-        console.log(e.targetTouches[0]);
-        console.groupEnd();
+        let targetTouches = e.targetTouches[0];
+        this.mouseX = targetTouches.pageX;
       },
       move(e) {
-        console.group('%c move-------------------------', 'color:red');
-        console.log(e.targetTouches[0]);
-        console.groupEnd();
+        let targetTouches = e.targetTouches[0];
+        this.x = targetTouches.pageX;
       },
-      moveEnd(e) {
-        console.group('%c moveEnd-------------------------', 'color:red');
-        console.log(e.targetTouches);
-        console.groupEnd();
+      moveEnd() {
+        let
+          target = document.getElementsByClassName('spin_item'),
+          len = target.length;
+        for (let k = 0; k < len; k++) {
+          let _target = target[k],
+            now = _target.getAttribute('now'),
+            spin_id = _target.getAttribute('spin_id');
+          // 左滑
+          if (this.mouseX - this.x > 50) {
+            now == spin_id - len + 1 ? now = spin_id : now--;
+          }
+          // 右滑
+          else if (this.mouseX - this.x < -50) {
+            now == k ? now = spin_id - len + 1 : now++;
+          }
+          _target.setAttribute('style', `transform: translateX(${now * 100}vw)`);
+          _target.setAttribute('now', now);
+        }
       }
     },
   }
@@ -64,7 +80,7 @@
     left: 0
     width: 100vw
     height: 56.25vw
-    overflow-x scroll
+    overflow-x hidden
     .spin_item
       position: absolute
       top: 0
@@ -74,5 +90,4 @@
       img
         width: 100%
         height: 100%
-
 </style>
