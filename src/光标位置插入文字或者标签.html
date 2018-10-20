@@ -42,26 +42,24 @@
 <script>
   // 定义最后光标对象
   let lastEditRange;
-  
+
   // 编辑框点击事件
-  document.getElementById('edit').onclick = function() {
-    // 获取选定对象
-    let selection = getSelection();
-    // 设置最后光标对象
-    lastEditRange = selection.getRangeAt(0);
-  };
-  
+  document.getElementById('edit').onclick = selects;
+
   // 编辑框按键弹起事件
-  document.getElementById('edit').onkeyup = function() {
+  document.getElementById('edit').onkeyup = selects;
+  function selects() {
     // 获取选定对象
     let selection = getSelection();
     // 设置最后光标对象
     lastEditRange = selection.getRangeAt(0);
-  };
-  
+    console.log(selection)
+    console.log(lastEditRange)
+  }
+
   // 表情点击事件
   document.querySelectorAll('.sendEmoji').forEach((item, i) => {
-    item.onclick = function() {
+    item.onclick = function () {
       // 获取选定对象
       let selection = getSelection();
       // 获取编辑框对象
@@ -113,6 +111,9 @@
         let textNode = range.startContainer;
         // 获取光标位置
         let rangeStartOffset = range.startOffset;
+        console.log(range);
+        console.log(textNode);
+        console.log(rangeStartOffset);
         // 文本节点在光标位置处插入新的表情内容
         textNode.insertData(rangeStartOffset, emojiInput.value);
         // 光标移动到到原来的位置加上新内容的长度
