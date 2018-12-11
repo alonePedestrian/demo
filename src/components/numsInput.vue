@@ -1,22 +1,24 @@
 <template>
   <div id="numInput">
     <input :value="formatter" @input="limitNum" class="numsInt">
-    <blockquote :class="showHint ? 'db' : ''">
-      <p>不会出现+</p>
-      <p>用户可输入的长度小数点和符号都是算长度的</p>
-      <p>不会出现多个0开头，也不会出现0开头的其他数字，但是可以单独输入一个0</p>
-    </blockquote>
-    <blockquote>
-      <div>
-        <span style="color: #E36049">参数</span>
-      </div>
-      <el-form label-width="86px" label-suffix="：" label-position="left" style="padding-left: 20px">
-        <el-form-item label="max">最大值</el-form-item>
-        <el-form-item label="min">最小值</el-form-item>
-        <el-form-item label="numLen">可输入长度</el-form-item>
-        <el-form-item label="precision">可输入几位小数 -- 暂时不会处理1.0/1.010这些情况</el-form-item>
-      </el-form>
-    </blockquote>
+    <div :class="showHint ? 'db' : 'dn'">
+      <blockquote>
+        <p>不会出现+</p>
+        <p>用户可输入的长度小数点和符号都是算长度的</p>
+        <p>不会出现多个0开头，也不会出现0开头的其他数字，但是可以单独输入一个0</p>
+      </blockquote>
+      <blockquote>
+        <div>
+          <span style="color: #E36049">参数</span>
+        </div>
+        <el-form label-width="86px" label-suffix="：" label-position="left" style="padding-left: 20px">
+          <el-form-item label="max">最大值</el-form-item>
+          <el-form-item label="min">最小值</el-form-item>
+          <el-form-item label="numLen">可输入长度</el-form-item>
+          <el-form-item label="precision">可输入几位小数 -- 暂时不会处理1.0/1.010这些情况</el-form-item>
+        </el-form>
+      </blockquote>
+    </div>
   </div>
 </template>
 <script>
@@ -53,7 +55,7 @@
     },
     data() {
       return {
-        showHint: false,
+        showHint: true,
         currentValue: '',
         oldValue: '',
       }
@@ -102,8 +104,6 @@
           // 整数
           if (numType === 'integer') val = val.replace(/(\.+)/, '');
           // 最小值边界
-          console.log(min);
-          console.log(val);
           if (val < min) val = min;
           // 最打值边界
           if (val > max) val = max;
@@ -161,5 +161,8 @@
   }
   .db {
     display: block;
+  }
+  .dn {
+    display: none;
   }
 </style>
