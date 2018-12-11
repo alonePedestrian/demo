@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Spin from '@/components/spin'
 import Spin1 from '@/components/spin1'
 import DragDemo from '@/components/drag_demo'
+import inputNum from '@/components/input-num'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/dragDemo',
       name: 'DragDemo',
       component: DragDemo
+    },
+    {
+      path: '/inputNum',
+      name: 'inputNum',
+      component: inputNum
     },
   ]
 })

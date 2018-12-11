@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*// 简单实现，参数只能从右到左传递
+		function createCurry(func, args) {
+			console.log(arguments);
+			var arity = func.length;
+			console.log(arity);
+			var args = args || [];
+			return function() {
+				var _args = [].slice.call(arguments);
+				[].push.apply(_args, args);
+
+        // 如果参数个数小于最初的func.length，则递归调用，继续收集参数
+        if (_args.length < arity) {
+        	return createCurry.call(this, func, _args);
+        }
+        // 参数收集完毕，则执行func
+        return func.apply(this, _args);
+      }
+    }
+    function check(targetString, reg) {
+    	return reg.test(targetString);
+    }
+    var _check = createCurry(check);
+    var checkPhone = _check();
+    checkPhone('183888888');*/
+    /*let num = 15;
+    console.group('%c ================================================', 'color:red');
+
+
+		console.log(Object.prototype.toString.call(''));
+		
+		console.log('%c' + toString.call(null),'color: red');
+		console.log('%c' + toString.call([]),'color: red');
+
+		console.log('%c' + [].toString(),'color: red');
+		console.log('%c' + {}.toString(),'color: red');
+		console.log('%c' + function() {}.toString(),'color: red');
+		console.log('%c' + ''.toString(),'color: red');
+		console.log('%c' + num.toString(),'color: red', typeof num.toString());
+		console.log('%c' + true.toString(),'color: red');
+
+		console.groupEnd();
+
+    console.group('%c ================================================', 'color:blue');
+
+		console.log(Object.prototype.toString.call(''));
+
+		console.log('%c' + toString.call(null),'color: blue');
+		console.log('%c' + toString.call(undefined),'color: blue');
+		console.log('%c' + toString.call([]),'color: blue');
+
+		console.log('%c' + [].toString(),'color: blue');
+		console.log('%c' + {}.toString(),'color: blue');
+		console.log('%c' + ''.toString(),'color: blue');
+		console.log('%c' + num.toString(),'color: blue');
+		console.log('%c' + true.toString(),'color: blue');
+
+		console.groupEnd();
+
+
+		console.log('%c' + Object.prototype.toString.call,'color: red')
+		console.log('%c' + toString.call,'color: red');
+
+
+		// 回调函数中有三个参数
+		// 第一个参数表示newArr的每一项，第二个参数表示该项在数组中的索引值
+		// 第三个表示数组本身
+		// 除此之外，回调函数中的this，当map不存在第二参数时，this指向丢失，当存在第二个参数时，指向改参数所设定的对象
+		var newArr = [1, 2, 3, 4].map(function(item, i, arr) {
+		    console.log(item, i, arr, this);  // 可运行试试看
+		    return item + 1;  // 每一项加1
+		}, { a: 1 })
+
+		console.log(newArr); // [2, 3, 4, 5];*/
+
+
+
+		console.log(Object.prototype.toString.call(null));
+		console.log(Object.prototype.toString.call(undefined));
+		console.log(Object.prototype.toString.call([]));
+		console.log('-----------------------------------------------------')
+
+		console.log(toString.call(null));
+		console.log(toString.call(undefined));
+		console.log(toString.call([]));
+
+
+</script>
+</body>
+</html>

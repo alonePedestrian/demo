@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>视频海报</title>
+  <style>    * {
+    margin: 0;
+    padding: 0;
+  }
+  #banner {
+    width: 100%;
+    height: 500px;
+    background: purple;
+    overflow: hidden;
+    position: relative;
+  }
+  #banner video {
+    width: 100%;
+    position: relative;
+    opacity: 0.6; /* 设置透明度 */
+  }
+  #banner h2, h4 {
+    position: absolute;
+    top: 120px;
+    left: 150px;
+    width: 100%;
+    text-align: left;
+    color: #fff;
+    line-height: 30px;
+  }
+  #banner h2 {
+    top: 80px;
+    font-size: 40px;
+    text-decoration: underline; 
+  }  </style>
+</head>
+<body>
+<div id="banner">
+  <video loop autoplay> <!-- loop循环播放，autoplay自动播放 -->
+    <source src="video/banner.mp4">
+  </video>
+  <h2>SLOW DOWN</h2>
+  <h4>静下来<br> 携一缕清风，续一杯清茶 <br> 且听风轻云淡</h4>
+</div>
+</body>
+</html>

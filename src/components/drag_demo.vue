@@ -10,15 +10,22 @@
                        width="150">
       </el-table-column>
     </wTable>
+    <h3>封装input--测试</h3>
+    <br><br><br>
+    <input type="" name="" v-model="intNum">
+    <numInput :value="intNum" @nalai=n></numInput>
+    <div><label>我来展示</label>{{intNum}}</div>
   </div>
 </template>
 <script>
   import wTable from './drag.vue'
+  import numInput from './numInput.vue'
 
   export default {
     name: "demoF",
     data() {
       return {
+        intNum: '',
         tableOption: {
           border: true,
           maxHeight: 500
@@ -104,12 +111,16 @@
       }
     },
     methods: {
+      n(val) {
+        console.log(val);
+      },
       handleNameSort() {
         console.log('handleNameSort')
       }
     },
     components: {
-      wTable
+      wTable,
+      numInput
     }
   }
 </script>

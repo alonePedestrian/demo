@@ -1,6 +1,6 @@
 <template>
   <div id="numInput">
-     <el-input placeholder="请输入" v-model="currentValue" @input="limitNum"></el-input>
+    <input :value="formatter" @input="limitNum" class="numsInt">
     <blockquote :class="showHint ? 'db' : ''">
       <p>不会出现+</p>
       <p>用户可输入的长度小数点和符号都是算长度的</p>
@@ -43,7 +43,7 @@
       },
       numType: {// 不会出现 + 号
         type: String,
-        default: 'integer'
+        default: ''
         // {
         //    "无限制": '',
         //    "整数": 'integer',
@@ -61,24 +61,36 @@
     watch: {
       value() {
         this.currentValue = this.value;
-        this.limitNum();
       }
+    },
+    created() {
+      this.currentValue = this.value;
+    },
+    computed: {
+      formatter() {
+        return this.currentValue;
+      },
     },
     methods: {
       assignment(newVal) {
         this.$nextTick(() => {
-          this.currentValue = newVal;
+          this.$emit('input', newVal);
         })
       },
       // 数字输入框
-      limitNum() {
+      limitNum(e) {
         const {min, max, numType, numLen, precision} = this;
-        let val = this.currentValue;
+        let val = e.target.value;
         if (val.length > numLen) val = val.substring(0, numLen);
+
         if (val.match(/^0{1}$/)) return;// 首位0
+
         if (numType !== 'plus' && val.match(/^\-{1}$/)) return;// 正数
+
         if (precision === 0) val = val.replace(/(\.+)/, '');// 0位小数
+
         if (numType !== 'integer' && val.match(/^\.{1}$/)) return;// 非整数
+
         if (!isNaN(val)) {
           if (!val.match(/\.+/)) val = val.replace(/(\b0+)/, '');
           // 小数位处理
@@ -90,48 +102,64 @@
           // 整数
           if (numType === 'integer') val = val.replace(/(\.+)/, '');
           // 最小值边界
+          console.log(min);
+          console.log(val);
           if (val < min) val = min;
           // 最打值边界
           if (val > max) val = max;
           this.oldValue = val;
-          this.assignment(val);
+          e.target.value = val;
+          this.$emit('input', val);
         }
-        else this.assignment(this.oldValue);
-      },
-      blurFunc() {},
+        else {
+          e.target.value = this.oldValue;
+          this.$emit('input', this.oldValue);
+        }
+      }
     }
   }
 </script>
 <style scoped>
-#numInput{
-  margin: 10px 0;
-  text-align: left;
-}
-blockquote {
-  display: block;
-  padding: 20px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  background-color: #f7f7f7;
-  border-left: 3px solid #b4b4b4;
-  word-break: break-word!important;
-  word-break: break-all;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 30px;
-}
-.db {
-  display: block;
-}
-</style>
-<style type="text/css">
-.el-form-item {
-  margin-bottom: 0;
-}
-.el-form-item__label {
-  line-height: 30px;
-}
-.el-form-item__content {
-  line-height: 30px;
-}
+  #numInput{
+    margin: 10px 0;
+    text-align: left;
+  }
+  .numsInt {
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    padding: 0 15px;
+    -webkit-appearance: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #606266;
+    font-size: inherit;
+    line-height: 40px;
+    outline: 0;
+    /*-webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);*/
+    /*transition: border-color .2s cubic-bezier(.645,.045,.355,1);*/
+    background-color: #fff;
+    background-image: none;
+  }
+  .numsInt:focus {
+    border: 1px solid rgb(66, 159, 255);
+  }
+  blockquote {
+    display: block;
+    padding: 20px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: #f7f7f7;
+    border-left: 3px solid #b4b4b4;
+    word-break: break-word!important;
+    word-break: break-all;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+  .db {
+    display: block;
+  }
 </style>
