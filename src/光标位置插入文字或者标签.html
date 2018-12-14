@@ -55,6 +55,7 @@
 
   // 编辑框按键弹起事件
   document.getElementById('edit').onkeyup = selects;
+
   function selects() {
     // 获取选定对象
     let selection = getSelection();
@@ -157,7 +158,7 @@
       lastEditRange = selection.getRangeAt(0);
     }
   });*/
-  document.querySelectorAll('.sendEmoji').onclick = function() {
+  document.querySelectorAll('.sendEmoji').onclick = function () {
     // 获取编辑框对象
     let edit = document.getElementById('edit')
     // 获取输入框对象

@@ -6,7 +6,6 @@
         <span class="img-explain">{{d.txt}}</span>
       </div>
     </div>
-
     <div>
       666
       666 <br>

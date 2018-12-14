@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>科里化</title>
 </head>
 <body>
 	<script type="text/javascript">
-		/*// 简单实现，参数只能从右到左传递
+		// 简单实现，参数只能从右到左传递
 		function createCurry(func, args) {
-			console.log(arguments);
-			var arity = func.length;
-			console.log(arity);
-			var args = args || [];
+      args = args || [];
+			let arity = func.length;// func参数个数
 			return function() {
-				var _args = [].slice.call(arguments);
+				let _args = [].slice.call(arguments);
 				[].push.apply(_args, args);
 
         // 如果参数个数小于最初的func.length，则递归调用，继续收集参数
@@ -27,15 +25,15 @@
     function check(targetString, reg) {
     	return reg.test(targetString);
     }
-    var _check = createCurry(check);
-    var checkPhone = _check();
-    checkPhone('183888888');*/
+    let _check = createCurry(check);
+    let checkPhone = _check();
+    checkPhone('183888888');
     /*let num = 15;
     console.group('%c ================================================', 'color:red');
 
 
 		console.log(Object.prototype.toString.call(''));
-		
+
 		console.log('%c' + toString.call(null),'color: red');
 		console.log('%c' + toString.call([]),'color: red');
 
@@ -73,7 +71,7 @@
 		// 第一个参数表示newArr的每一项，第二个参数表示该项在数组中的索引值
 		// 第三个表示数组本身
 		// 除此之外，回调函数中的this，当map不存在第二参数时，this指向丢失，当存在第二个参数时，指向改参数所设定的对象
-		var newArr = [1, 2, 3, 4].map(function(item, i, arr) {
+		let newArr = [1, 2, 3, 4].map(function(item, i, arr) {
 		    console.log(item, i, arr, this);  // 可运行试试看
 		    return item + 1;  // 每一项加1
 		}, { a: 1 })
@@ -82,16 +80,32 @@
 
 
 
-		console.log(Object.prototype.toString.call(null));
-		console.log(Object.prototype.toString.call(undefined));
-		console.log(Object.prototype.toString.call([]));
-		console.log('-----------------------------------------------------')
+    function add() {
+      let args = [].slice.call(arguments);
+      console.log(args);
+      // 用以存储更新参数数组
+      function adder() {
+        let arg = [].slice.call(arguments);
+        console.log(arg);
+        args = args.concat(arg);
+        // 每次调用，都返回自身，取值时可以通过内部的toString取到值
+        return adder;
+      }
+      // 指定 toString的值，用以隐示取值计算
+      adder.toString = function() {
+        console.log(159)
+        return args.reduce(function(v1, v2) {
+          return v1 + v2;
+        });
+      };
+      // console.log(adder)
+      return adder;
+    }
 
-		console.log(toString.call(null));
-		console.log(toString.call(undefined));
-		console.log(toString.call([]));
-
-
-</script>
+    // console.log(add(1, 2, 3, 4, 5)(6, 7, 8, 9));
+    // console.log(typeof add(1, 2, 3, 4, 5)(6, 7, 8, 9));
+    console.log(add(1, 2));
+    // add(1)(2)(3)(4);
+  </script>
 </body>
 </html>

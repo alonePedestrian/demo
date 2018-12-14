@@ -120,7 +120,7 @@
   }
 </script>
 <style scoped>
-  #numInput{
+  #numInput {
     margin: 10px 0;
     text-align: left;
   }
@@ -138,8 +138,8 @@
     font-size: inherit;
     line-height: 40px;
     outline: 0;
-    /*-webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);*/
-    /*transition: border-color .2s cubic-bezier(.645,.045,.355,1);*/
+    -webkit-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+    transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
     background-color: #fff;
     background-image: none;
   }
@@ -153,7 +153,7 @@
     margin-bottom: 25px;
     background-color: #f7f7f7;
     border-left: 3px solid #b4b4b4;
-    word-break: break-word!important;
+    word-break: break-word !important;
     word-break: break-all;
     font-size: 16px;
     font-weight: 400;

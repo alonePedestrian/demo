@@ -1,6 +1,6 @@
 <template>
   <div id="numInput">
-     <el-input placeholder="请输入" v-model="currentValue" @input="limitNum"></el-input>
+    <el-input placeholder="请输入" v-model="currentValue" @input="limitNum"></el-input>
     <blockquote :class="showHint ? 'db' : ''">
       <p>不会出现+</p>
       <p>用户可输入的长度小数点和符号都是算长度的</p>
@@ -103,35 +103,35 @@
   }
 </script>
 <style scoped>
-#numInput{
-  margin: 10px 0;
-  text-align: left;
-}
-blockquote {
-  display: block;
-  padding: 20px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  background-color: #f7f7f7;
-  border-left: 3px solid #b4b4b4;
-  word-break: break-word!important;
-  word-break: break-all;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 30px;
-}
-.db {
-  display: block;
-}
+  #numInput {
+    margin: 10px 0;
+    text-align: left;
+  }
+  blockquote {
+    display: block;
+    padding: 20px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: #f7f7f7;
+    border-left: 3px solid #b4b4b4;
+    word-break: break-word !important;
+    word-break: break-all;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+  .db {
+    display: block;
+  }
 </style>
 <style type="text/css">
-.el-form-item {
-  margin-bottom: 0;
-}
-.el-form-item__label {
-  line-height: 30px;
-}
-.el-form-item__content {
-  line-height: 30px;
-}
+  .el-form-item {
+    margin-bottom: 0;
+  }
+  .el-form-item__label {
+    line-height: 30px;
+  }
+  .el-form-item__content {
+    line-height: 30px;
+  }
 </style>

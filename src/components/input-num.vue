@@ -1,7 +1,7 @@
 <template>
-	<div id="inputNum">
+  <div id="inputNum">
     <div style="padding-left: 20px; text-align: left">
-      <numsInput v-model="nums" :numLen='10' :max="10" :min="-20" style="width: 50%;"></numsInput>
+      <numsInput v-model="nums" :numLen='10' style="width: 50%;"></numsInput>
     </div>
     <div>{{nums}}</div>
     <!--<br>
@@ -18,37 +18,38 @@
 		</div>
     <br>
     <hr>-->
-	</div>
+  </div>
 </template>
 <script>
-	import numInput from './numInput.vue'
-	import numsInput from './numsInput.vue'
-	export default{
-		name: 'input-num',
-		data() {
-			return {
-				num: '',
-				nums: '',
-				aa: '',
-			}
-		},
-		methods: {
-			aaa() {
-				this.num = this.aa;
-			},
-		},
-		components: {
-			numInput,
-			numsInput,
-		}
-	}
+  import numInput from './numInput.vue'
+  import numsInput from './numsInput.vue'
+
+  export default {
+    name: 'input-num',
+    data() {
+      return {
+        num: '',
+        nums: '',
+        aa: '',
+      }
+    },
+    methods: {
+      aaa() {
+        this.num = this.aa;
+      },
+    },
+    components: {
+      numInput,
+      numsInput,
+    }
+  }
 </script>
 <style type="text/css" scoped>
-	.ceiling {
-		font-size: 18px;
-		line-height: 50px;
-		text-align: center;
-		background: #2db7f5;
-		font-weight: 900;
-	}
+  .ceiling {
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    background: #2db7f5;
+    font-weight: 900;
+  }
 </style>

@@ -8,7 +8,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  export default{
+  export default {
     name: 'editDiv',
     props: {
       value: {
@@ -20,21 +20,21 @@
         default: true
       }
     },
-    data(){
+    data() {
       return {
         innerText: this.value,
         isLocked: false
       }
     },
     watch: {
-      'value'(){
+      'value'() {
         if (!this.isLocked || !this.innerText) {
           this.innerText = this.value;
         }
       }
     },
     methods: {
-      changeText(){
+      changeText() {
         this.$emit('input', this.$el.innerHTML);
       }
     }
@@ -50,7 +50,7 @@
     user-select: text;
     white-space: pre-wrap;
     text-align: left;
-    &[contenteditable=true]{
+    &[contenteditable=true] {
       user-modify: read-write-plaintext-only;
       &:empty:before {
         content: attr(placeholder);
