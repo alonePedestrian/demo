@@ -9,3 +9,6 @@ export default {
   name: 'App'
 }
 </script>
+<style lang="stylus">
+  @import "css/func.styl";
+</style>
